@@ -574,7 +574,7 @@
       "Si todavía te sigues sintiendo mal, entonces mi carta fue horrible. Me disculpo a mi yo del pasado.\n\n" +
       "Es broma, Val. No tienes que sentirte mejor inmediatamente ni fingir que todo está bien.\n\n" +
       "Quiero que recuerdes que las cosas pueden mejorar, aunque ahora no lo parezca. No tienes que resolverlo todo hoy ni cargar con todo tú sola.\n\n" +
-      "Tú puedes, tú puedes. :V";
+      "Tú puedess, tú puedesss.";
 
     playTypewriterEffect(elements.typewriterText, supportMessage);
   }
