@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Una carta interactiva y personal para Valentina. Hecha con cariño, humor y buenos deseos.">
+  <meta name="theme-color" content="#0c0d18">
+  <title>Una Carta para Valentina</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Fondo animado de estrellas y partículas -->
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- Botón accesible para saltar introducción -->
+  <button id="skip-intro-btn" class="skip-btn" type="button">Saltar introducción e ir a la carta</button>
+
+  <!-- ==========================================
+       PANTALLA 1: ENTRADA CINEMATOGRÁFICA
+  =========================================== -->
+  <section id="screen-intro" class="screen screen-intro active" aria-live="polite">
+    <div class="intro-backdrop"></div>
+    <div class="intro-content">
+      <div class="intro-sparkle" aria-hidden="true">
+        <svg viewBox="0 0 100 100" class="sparkle-svg">
+          <defs>
+            <radialGradient id="sparkle-glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#ffd6e0" stop-opacity="1" />
+              <stop offset="40%" stop-color="#c8b6ff" stop-opacity="0.8" />
+              <stop offset="100%" stop-color="#b8a7ea" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+          <circle cx="50" cy="50" r="35" fill="url(#sparkle-glow)" filter="blur(6px)" />
+          <path d="M50 5 Q50 50 95 50 Q50 50 50 95 Q50 50 5 50 Q50 50 5 50 Z" fill="#ffffff" />
+          <circle cx="50" cy="50" r="8" fill="#ffd6e0" />
+        </svg>
+      </div>
+      <p id="intro-quote" class="intro-quote">
+        &ldquo;Hice esto por si algún día necesitas recordar algo.&rdquo;
+      </p>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       CONTENEDOR PRINCIPAL DE PANTALLAS
+  =========================================== -->
+  <main id="app-container" class="app-container hidden">
+
+    <!-- ==========================================
+         PANTALLA 2: LA CARTA Y SELECTOR DE EMOCIONES
+    =========================================== -->
+    <section id="screen-carta" class="screen screen-carta" aria-labelledby="letter-heading">
+      <header class="letter-top-header">
+        <div class="letter-stamp" aria-hidden="true">
+          <span>🌸 Para Val</span>
+        </div>
+        <p class="letter-meta-date">Una pequeña nota digital</p>
+      </header>
+
+      <!-- Hoja elegante de la carta -->
+      <article class="letter-sheet">
+        <div class="letter-header-decor" aria-hidden="true">
+          <span class="decor-line"></span>
+          <span class="decor-heart">✦</span>
+          <span class="decor-line"></span>
+        </div>
+
+        <h1 id="letter-heading" class="sr-only">Carta para Valentina</h1>
+
+        <div class="letter-body">
+          <p class="letter-p">
+            Valentina, te quería pedir perdón por todo. Lo siento si hice que te sintieras mal, de verdad. No quiero que te preocupes por mí ni que te sientas culpable por lo que pasó.
+          </p>
+
+          <p class="letter-p">
+            Quería decirte algo. Esto va a ser un texto motivador que nadie pidió, pero igual te lo voy a decir.
+          </p>
+
+          <p class="letter-p">
+            Has sufrido mucho, has aguantado muchas cosas y lo sigues haciendo. Y está bien, al final somos humanos, pero no debes tratarte mal ni pensar que no vales lo suficiente. Eres una persona increíble. Tampoco quiero sonar tan cursi y decir que eres perfecta, porque ni tú te crees eso, pero incluso esas imperfecciones que dices tener son parte de lo que te hace especial.
+          </p>
+
+          <p class="letter-p">
+            O sea, yo no he visto a nadie viendo South Park en plena clase de Física o jugando un Tycoon en Roblox en pleno 2026. Eres un caso perdido, Val. :V
+          </p>
+
+          <p class="letter-p">
+            Sé que hay personas que son mejores que nosotros en ciertas cosas, pero eso no significa que nosotros no valgamos nada. Cada persona tiene sus puntos fuertes y tú también los tienes. Dibujas bonito, sabes inglés básico Open English, te preocupas por las personas que quieres, sabes hacer reír a los demás y te adaptas rápido a los juegos. Aunque digas que no es una de tus fortalezas, sí lo es. Aprendes, te adaptas y poco a poco vas mejorando.
+          </p>
+
+          <p class="letter-p">
+            De todo se aprende, tanto de las cosas buenas como de las malas. Lo importante es quedarte con lo que te ayuda a crecer y aprender de aquello que no salió como esperabas para que, en otra oportunidad, puedas hacerlo mejor.
+          </p>
+
+          <p class="letter-p">
+            Y ahora ya no estás sola. Tienes un montón de compañeros que te aprecian y confían en ti. No tienes que cargar con todo tú sola ni fingir que siempre estás bien. Puedes apoyarte en nosotros cuando lo necesites.
+          </p>
+
+          <p class="letter-p">
+            Yo no voy a dejar de apoyarte ni a alejarme solo por lo que siento. Te lo digo porque, independientemente de todo, de verdad creo en ti y en la persona que eres. No quiero que te trates como si no valieras nada, ¿sí?
+          </p>
+
+          <p class="letter-p">
+            Puedes llorar, reírte, alocarte y ser tú misma. No tienes que reprimirte por algo que salió mal ni pensar que una decisión equivocada te convierte en una persona peor. Todos nos equivocamos, todos hacemos cosas de las que después nos arrepentimos y todos tenemos cosas que aprender. Eso no significa que seamos un desastre como personas.
+          </p>
+
+          <p class="letter-p">
+            Si algo no te salió bien esta vez, a la próxima lo harás mejor porque ya tienes una experiencia más. Y si vuelve a salir mal, pues lo intentas otra vez. Así funciona esto de vivir, supongo. Qué sistema tan mal diseñado, la verdad. :V
+          </p>
+
+          <p class="letter-p">
+            Solo no te castigues durante tanto tiempo por algo que ya pasó. Date la oportunidad de aprender, mejorar y seguir adelante. No tienes que ser perfecta ni tener todo resuelto. Poco a poco vas a poder con las cosas, Val. Tú puedes, tú puedes :V.
+          </p>
+
+          <p class="letter-p">
+            Y bueno, esto lo escribí por si algún día te sientes mal y necesitas leer algo así. Quizá te saque una sonrisa, quizá te dé vergüenza ajena o quizá te incomode, ajajja. Espero que sea la primera y no la última opción.
+          </p>
+
+          <p class="letter-p">
+            No quiero que pienses que tomaste una mala decisión y que eso te hace peor persona. No quiero que te culpes por todo ni que olvides las cosas buenas que tienes por concentrarte únicamente en lo que crees que haces mal.
+          </p>
+
+          <p class="letter-p">
+            Ya se hizo un poco tarde. Perdón si terminé escribiendo demasiado o si te incomodé con todo esto. Solo quería que supieras que puedes contar conmigo y que, aunque a veces las cosas sean complicadas, sigo creyendo en ti.
+          </p>
+
+          <p class="letter-p letter-closing">
+            Buenas noches, Val. Cuídate mucho, ¿sí?
+          </p>
+
+          <div class="letter-signature">
+            <span class="signature-title">Att:</span>
+            <span class="signature-name">Jonh Pork</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Selector de Emociones -->
+      <section class="emotions-section" aria-labelledby="emotions-title">
+        <div class="emotions-header">
+          <h2 id="emotions-title" class="emotions-title">Bueno, Val... ¿cómo te sientes?</h2>
+          <p class="emotions-subtitle">Elige con total honestidad (o con humor):</p>
+        </div>
+
+        <div class="emotions-grid" role="group" aria-label="Opciones de estado de ánimo">
+          <!-- Opción 1: Bien -->
+          <button type="button" class="emotion-card emotion-bien" data-target="screen-bien">
+            <div class="emotion-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" class="svg-icon">
+                <circle cx="32" cy="32" r="28" fill="#ffd6e0" opacity="0.25"/>
+                <circle cx="32" cy="32" r="22" fill="#ffd6e0"/>
+                <!-- Carita feliz -->
+                <circle cx="24" cy="28" r="3" fill="#3b2d54"/>
+                <circle cx="40" cy="28" r="3" fill="#3b2d54"/>
+                <path d="M22 36 Q32 46 42 36" stroke="#3b2d54" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <!-- Chapitas sonrojadas -->
+                <ellipse cx="20" cy="36" rx="3.5" ry="2" fill="#ff8fa3" opacity="0.6"/>
+                <ellipse cx="44" cy="36" rx="3.5" ry="2" fill="#ff8fa3" opacity="0.6"/>
+              </svg>
+            </div>
+            <span class="emotion-label">Bien</span>
+            <span class="emotion-hint">Todo tranqui ✨</span>
+          </button>
+
+          <!-- Opción 2: Mal -->
+          <button type="button" class="emotion-card emotion-mal" data-target="screen-mal">
+            <div class="emotion-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" class="svg-icon">
+                <circle cx="32" cy="32" r="28" fill="#c8b6ff" opacity="0.25"/>
+                <circle cx="32" cy="32" r="22" fill="#c8b6ff"/>
+                <!-- Carita achicopalada pero tierna -->
+                <circle cx="24" cy="30" r="3" fill="#241b3e"/>
+                <circle cx="40" cy="30" r="3" fill="#241b3e"/>
+                <path d="M24 40 Q32 34 40 40" stroke="#241b3e" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <!-- Nube sutil -->
+                <path d="M18 16 A5 5 0 0 1 28 15 A7 7 0 0 1 42 16 A5 5 0 0 1 48 20 L16 20 Z" fill="#9d8cd7" opacity="0.7"/>
+              </svg>
+            </div>
+            <span class="emotion-label">Mal</span>
+            <span class="emotion-hint">Un día pesado 🫂</span>
+          </button>
+
+          <!-- Opción 3: No sé -->
+          <button type="button" class="emotion-card emotion-nose" data-target="screen-nose">
+            <div class="emotion-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" class="svg-icon">
+                <circle cx="32" cy="32" r="28" fill="#b8a7ea" opacity="0.25"/>
+                <circle cx="32" cy="32" r="22" fill="#b8a7ea"/>
+                <!-- Carita dudosa / espiral -->
+                <circle cx="23" cy="28" r="3" fill="#2b1e4a"/>
+                <ellipse cx="41" cy="27" rx="3" ry="4" fill="#2b1e4a"/>
+                <!-- Boca ondulada -->
+                <path d="M23 38 Q28 35 32 38 T41 38" stroke="#2b1e4a" stroke-width="3" fill="none" stroke-linecap="round"/>
+                <!-- Signo interrogación flotante -->
+                <text x="38" y="18" font-size="14" font-weight="bold" fill="#ffd6e0">?</text>
+              </svg>
+            </div>
+            <span class="emotion-label">No sé</span>
+            <span class="emotion-hint">Sentimientos raros :V</span>
+          </button>
+
+          <!-- Opción 4: Soy un pan -->
+          <button type="button" class="emotion-card emotion-pan" data-target="screen-pan">
+            <div class="emotion-icon" aria-hidden="true">
+              <svg viewBox="0 0 64 64" class="svg-icon">
+                <circle cx="32" cy="32" r="28" fill="#ffc300" opacity="0.2"/>
+                <!-- Pancito tostado tierno -->
+                <path d="M16 32 C16 20 22 18 32 18 C42 18 48 20 48 32 C48 40 44 44 32 44 C20 44 16 40 16 32 Z" fill="#e09f3e" stroke="#9e6212" stroke-width="2"/>
+                <path d="M20 30 C20 23 24 21 32 21 C40 21 44 23 44 30 C44 37 40 40 32 40 C24 40 20 37 20 30 Z" fill="#ffd166"/>
+                <!-- Ojitos kawaii del pan -->
+                <circle cx="28" cy="30" r="2" fill="#4a2e0a"/>
+                <circle cx="36" cy="30" r="2" fill="#4a2e0a"/>
+                <path d="M30 33 Q32 35 34 33" stroke="#4a2e0a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="emotion-label">Soy un pan</span>
+            <span class="emotion-hint">Modo carbohidrato 🥖</span>
+          </button>
+        </div>
+      </section>
+    </section>
+
+
+    <!-- ==========================================
+         PANTALLA 3: RUTA «BIEN»
+    =========================================== -->
+    <section id="screen-bien" class="screen screen-subpage" aria-labelledby="bien-heading">
+      <div class="subpage-card">
+        <div class="subpage-badge">Ruta: Todo bien ☀️</div>
+        
+        <h2 id="bien-heading" class="subpage-title">¿Te gustó la página?</h2>
+
+        <!-- Sistema de 5 estrellas interactivo -->
+        <div class="stars-rating-container" role="radiogroup" aria-label="Calificación de la página de una a cinco estrellas">
+          <button type="button" class="star-btn" data-value="1" role="radio" aria-checked="false" aria-label="1 estrella">
+            <svg viewBox="0 0 24 24" class="star-svg" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </button>
+          <button type="button" class="star-btn" data-value="2" role="radio" aria-checked="false" aria-label="2 estrellas">
+            <svg viewBox="0 0 24 24" class="star-svg" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </button>
+          <button type="button" class="star-btn" data-value="3" role="radio" aria-checked="false" aria-label="3 estrellas">
+            <svg viewBox="0 0 24 24" class="star-svg" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </button>
+          <button type="button" class="star-btn" data-value="4" role="radio" aria-checked="false" aria-label="4 estrellas">
+            <svg viewBox="0 0 24 24" class="star-svg" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </button>
+          <button type="button" class="star-btn" data-value="5" role="radio" aria-checked="false" aria-label="5 estrellas">
+            <svg viewBox="0 0 24 24" class="star-svg" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </button>
+        </div>
+
+        <p class="joke-disclaimer">(no, mentira, es broma)</p>
+
+        <!-- Botón para desplegar registro manual de visitas -->
+        <div class="manual-tracker-section">
+          <button type="button" id="toggle-tracker-btn" class="secondary-interactive-btn">
+            ¿Quieres guardar cuántas veces vienes a leer la carta?
+          </button>
+
+          <div id="tracker-panel" class="tracker-panel hidden" aria-live="polite">
+            <p class="tracker-notice">
+              <strong>Nota:</strong> Esta cifra se ingresa de forma totalmente manual según tu propio recuento personal. La página no sabe ni deduce si leíste la carta solo con abrirla.
+            </p>
+
+            <form id="tracker-form" class="tracker-form" onsubmit="return false;">
+              <label for="manual-count-input" class="tracker-label">
+                Cantidad de veces que has venido a leer la carta:
+              </label>
+              <div class="tracker-input-group">
+                <input 
+                  type="number" 
+                  id="manual-count-input" 
+                  name="manual-count" 
+                  min="0" 
+                  step="1" 
+                  placeholder="Ej: 3"
+                  aria-describedby="tracker-feedback"
+                  required
+                >
+                <button type="button" id="save-count-btn" class="primary-btn">
+                  Guardar
+                </button>
+              </div>
+            </form>
+
+            <div id="tracker-feedback" class="tracker-feedback" role="status"></div>
+
+            <div class="tracker-summary">
+              <p>Tu registro guardado actualmente: <strong id="current-saved-display">Ninguno aún</strong></p>
+              <p class="technical-visits-text">
+                <small>Visitas técnicas al enlace en este navegador: <span id="tech-visits-display">0</span> (conteo de aperturas del navegador, independiente de tus lecturas reales).</small>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="subpage-actions">
+          <button type="button" class="btn-return-letter" data-back-to="screen-carta">
+            ← Volver a leer la carta
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         PANTALLA 4: RUTA «MAL»
+    =========================================== -->
+    <section id="screen-mal" class="screen screen-subpage" aria-labelledby="mal-heading">
+      <div class="subpage-card warm-night-card">
+        <div class="subpage-badge">Ruta: Apoyo incondicional 💜</div>
+
+        <h2 id="mal-heading" class="subpage-title">¿Todavía te sientes mal, Val?</h2>
+
+        <!-- Área del botón que esquiva -->
+        <div id="dodge-area" class="dodge-container">
+          <button type="button" id="dodge-btn" class="dodge-btn">
+            Sí, todavía me siento mal
+          </button>
+          <p id="dodge-hint" class="dodge-hint" aria-live="polite"></p>
+        </div>
+
+        <!-- Mensaje de apoyo con efecto máquina de escribir -->
+        <div id="mal-resolution" class="mal-resolution hidden" aria-live="polite">
+          <div class="support-text-card">
+            <div id="typewriter-text" class="typewriter-container"></div>
+          </div>
+
+          <!-- Monitor de computadora gigante -->
+          <div class="giant-monitor-container" aria-label="Ilustración de un monitor de computadora gigante y amigable">
+            <div class="monitor-wrapper">
+              <svg viewBox="0 0 400 320" class="monitor-svg" role="img" aria-label="Monitor gigante con carita tierna animada">
+                <defs>
+                  <linearGradient id="monitor-body" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2a2542" />
+                    <stop offset="100%" stop-color="#181528" />
+                  </linearGradient>
+                  <linearGradient id="monitor-screen-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#4a3b69" />
+                    <stop offset="50%" stop-color="#28203c" />
+                    <stop offset="100%" stop-color="#1a1528" />
+                  </linearGradient>
+                  <filter id="screen-glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="8" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
+
+                <!-- Base del monitor -->
+                <ellipse cx="200" cy="305" rx="90" ry="12" fill="#120f1f" opacity="0.6"/>
+                <path d="M165 240 L235 240 L250 295 L150 295 Z" fill="#201c33" stroke="#3d355c" stroke-width="2"/>
+                <rect x="140" y="292" width="120" height="12" rx="6" fill="#2d2747" stroke="#4c4273" stroke-width="2"/>
+
+                <!-- Chasis exterior del monitor -->
+                <rect x="25" y="15" width="350" height="230" rx="24" fill="url(#monitor-body)" stroke="#5d5088" stroke-width="4"/>
+
+                <!-- Bisel interior -->
+                <rect x="40" y="30" width="320" height="195" rx="16" fill="#131021" stroke="#352c54" stroke-width="2"/>
+
+                <!-- Pantalla con resplandor -->
+                <rect x="48" y="38" width="304" height="178" rx="12" fill="url(#monitor-screen-bg)"/>
+
+                <!-- Líneas de scanline sutiles -->
+                <line x1="50" y1="75" x2="350" y2="75" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+                <line x1="50" y1="115" x2="350" y2="115" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+                <line x1="50" y1="155" x2="350" y2="155" stroke="#ffffff" stroke-opacity="0.04" stroke-width="1"/>
+
+                <!-- Expresión amigable en la pantalla -->
+                <g class="monitor-face">
+                  <!-- Ojos parpadeantes -->
+                  <g class="monitor-eye monitor-eye-left">
+                    <circle cx="150" cy="115" r="14" fill="#ffd6e0" filter="url(#screen-glow)"/>
+                    <circle cx="153" cy="111" r="5" fill="#ffffff"/>
+                    <ellipse cx="145" cy="120" rx="3" ry="2" fill="#ffffff" opacity="0.8"/>
+                  </g>
+                  <g class="monitor-eye monitor-eye-right">
+                    <circle cx="250" cy="115" r="14" fill="#ffd6e0" filter="url(#screen-glow)"/>
+                    <circle cx="253" cy="111" r="5" fill="#ffffff"/>
+                    <ellipse cx="245" cy="120" rx="3" ry="2" fill="#ffffff" opacity="0.8"/>
+                  </g>
+
+                  <!-- Chapitas sonrosadas en la pantalla -->
+                  <ellipse cx="125" cy="132" rx="12" ry="7" fill="#ff758f" opacity="0.5"/>
+                  <ellipse cx="275" cy="132" rx="12" ry="7" fill="#ff758f" opacity="0.5"/>
+
+                  <!-- Sonrisa cálida -->
+                  <path d="M180 135 Q200 155 220 135" stroke="#ffd6e0" stroke-width="5" fill="none" stroke-linecap="round"/>
+
+                  <!-- Antenita o chispita flotante -->
+                  <path d="M200 70 Q200 85 200 85" stroke="#c8b6ff" stroke-width="3" stroke-linecap="round"/>
+                  <polygon points="200,60 203,67 210,70 203,73 200,80 197,73 190,70 197,67" fill="#ffd6e0"/>
+                </g>
+
+                <!-- Botón de encendido LED suave -->
+                <circle cx="200" cy="235" r="4" fill="#70e000" filter="url(#screen-glow)"/>
+                <!-- Logo simpático del monitor -->
+                <text x="50" y="238" font-size="9" fill="#8d7ea8" font-family="'Plus Jakarta Sans', sans-serif" letter-spacing="1">VAL-OS v2026</text>
+              </svg>
+            </div>
+            <p class="monitor-caption">"Aquí estoy cuidándote en digital 👾✨"</p>
+          </div>
+
+          <div class="subpage-actions">
+            <button type="button" class="btn-return-letter" data-back-to="screen-carta">
+              ← Volver a leer la carta
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         PANTALLA 5: RUTA «NO SÉ»
+    =========================================== -->
+    <section id="screen-nose" class="screen screen-subpage" aria-labelledby="nose-heading">
+      <div class="subpage-card nose-card">
+        <div class="subpage-badge">Ruta: Modo reflexivo / dudoso 🤔</div>
+
+        <!-- Carita minimalista confundida -->
+        <div class="confused-avatar" aria-hidden="true">
+          <svg viewBox="0 0 100 100" class="confused-svg">
+            <defs>
+              <linearGradient id="avatar-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#b8a7ea" />
+                <stop offset="100%" stop-color="#7251b5" />
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="50" r="44" fill="url(#avatar-grad)" stroke="#dcd6f7" stroke-width="3"/>
+            <!-- Ojo izquierdo normal -->
+            <circle cx="36" cy="45" r="6" fill="#1b1233"/>
+            <circle cx="38" cy="43" r="2" fill="#ffffff"/>
+            <!-- Ojo derecho parpadeante o en espiral -->
+            <path d="M58 45 Q64 38 70 45" stroke="#1b1233" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <!-- Boca ladeada / dudosa -->
+            <path d="M38 65 Q50 60 62 68" stroke="#1b1233" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <!-- Gotita de desconcierto -->
+            <path d="M78 28 C78 28 84 36 84 40 C84 44 81 47 77 47 C73 47 70 44 70 40 C70 36 78 28 78 28 Z" fill="#a0c4ff"/>
+          </svg>
+        </div>
+
+        <h2 id="nose-heading" class="sr-only">Ruta No Sé</h2>
+
+        <div class="nose-text-content">
+          <p>Bueno, al menos no elegiste que estás mal y tampoco dijiste que estás bien.</p>
+          <p class="snarky-line">Entonces mi carta igual sigue siendo una mierda.</p>
+          <p class="joke-recovery">Es mentira. :V</p>
+          <p>Pero bueno, quise hacer esto por si algún día necesitas leer algo así.</p>
+          <p>Recuerda que puedes aprender de lo que te pasa, que no tienes que hacerlo todo perfecto y que siempre puedes volver a intentarlo.</p>
+          <p class="nose-encouragement">No te desanimes contigo misma. Tú puedes lograr muchas cosas, poco a poco.</p>
+        </div>
+
+        <div class="subpage-actions">
+          <button type="button" class="btn-return-letter primary-btn-large" data-back-to="screen-carta">
+            Volver a leer la carta
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         PANTALLA 6: RUTA «SOY UN PAN»
+    =========================================== -->
+    <section id="screen-pan" class="screen screen-subpage" aria-labelledby="pan-heading">
+      <div class="subpage-card pan-card">
+        <div class="subpage-badge">Ruta: Filosofía del pan 🍞</div>
+
+        <!-- Ilustración de un Pan Gigante con sombra -->
+        <div class="giant-pan-container" aria-label="Ilustración cómica de un pan gigante caricaturesco">
+          <div class="pan-floater">
+            <svg viewBox="0 0 320 220" class="giant-pan-svg" role="img" aria-label="Un pan dorado, sonriente y pachoncito">
+              <defs>
+                <!-- Degradado de la corteza dorada -->
+                <radialGradient id="bread-crust" cx="50%" cy="30%" r="70%">
+                  <stop offset="0%" stop-color="#ffd56b" />
+                  <stop offset="45%" stop-color="#e29526" />
+                  <stop offset="85%" stop-color="#b0650d" />
+                  <stop offset="100%" stop-color="#7a4206" />
+                </radialGradient>
+                <!-- Degradado migajita interna / relieve -->
+                <linearGradient id="score-cut" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#ffe8a1" />
+                  <stop offset="100%" stop-color="#e09f3e" />
+                </linearGradient>
+                <filter id="pan-shadow-filter" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur" />
+                </filter>
+              </defs>
+
+              <!-- Forma del pan gigante artesanal -->
+              <path d="M45 130 C30 80 75 35 160 35 C245 35 290 80 275 130 C265 170 230 185 160 185 C90 185 55 170 45 130 Z" 
+                    fill="url(#bread-crust)" 
+                    stroke="#592e02" 
+                    stroke-width="5"/>
+
+              <!-- Cortes / Greñas típicas de panadería con brillo -->
+              <!-- Corte izquierdo -->
+              <path d="M90 70 Q110 95 105 135" stroke="url(#score-cut)" stroke-width="10" stroke-linecap="round" fill="none"/>
+              <path d="M90 70 Q110 95 105 135" stroke="#fff1b8" stroke-width="4" stroke-linecap="round" fill="none"/>
+
+              <!-- Corte centro -->
+              <path d="M155 55 Q165 95 160 145" stroke="url(#score-cut)" stroke-width="12" stroke-linecap="round" fill="none"/>
+              <path d="M155 55 Q165 95 160 145" stroke="#fff1b8" stroke-width="5" stroke-linecap="round" fill="none"/>
+
+              <!-- Corte derecho -->
+              <path d="M225 70 Q215 95 210 135" stroke="url(#score-cut)" stroke-width="10" stroke-linecap="round" fill="none"/>
+              <path d="M225 70 Q215 95 210 135" stroke="#fff1b8" stroke-width="4" stroke-linecap="round" fill="none"/>
+
+              <!-- Carita súper tierna y graciosa del pan -->
+              <!-- Ojo izquierdo -->
+              <circle cx="135" cy="115" r="6" fill="#3b1e03"/>
+              <circle cx="137" cy="112" r="2.2" fill="#ffffff"/>
+
+              <!-- Ojo derecho -->
+              <circle cx="185" cy="115" r="6" fill="#3b1e03"/>
+              <circle cx="187" cy="112" r="2.2" fill="#ffffff"/>
+
+              <!-- Boquita feliz -->
+              <path d="M154 124 Q160 132 166 124" stroke="#3b1e03" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+              <!-- Chapitas tostadas -->
+              <ellipse cx="120" cy="125" rx="8" ry="4" fill="#e8613c" opacity="0.5"/>
+              <ellipse cx="200" cy="125" rx="8" ry="4" fill="#e8613c" opacity="0.5"/>
+
+              <!-- Destellitos de recién horneado -->
+              <circle cx="70" cy="45" r="3" fill="#ffeaa7"/>
+              <circle cx="250" cy="50" r="3.5" fill="#ffeaa7"/>
+            </svg>
+          </div>
+          <!-- Sombra dinámica debajo del pan -->
+          <div class="pan-shadow" aria-hidden="true"></div>
+        </div>
+
+        <h2 id="pan-heading" class="pan-title">Hola, soy un pan.</h2>
+
+        <div class="subpage-actions">
+          <button type="button" class="btn-return-letter primary-btn-large" data-back-to="screen-carta">
+            Volver a leer la carta
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Script interactivo -->
+  <script src="script.js"></script>
+</body>
+</html>
